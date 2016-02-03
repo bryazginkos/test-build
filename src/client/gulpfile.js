@@ -77,4 +77,12 @@ gulp.task('copyHtmlFiles', ['cleanHtmlFiles'], function() {
 
 gulp.task('copyFiles', ['copyCssFiles', 'copyJsFiles', 'copyScriptFiles', 'copyImgFiles', 'copyHtmlFiles']);
 
+//WATCH
+
+//todo problems watch null EPERM
+gulp.task('watch', function() {
+    gulp.watch('app/**', {"readDelay" : 1000}, ['copyFiles']);
+});
+
+
 
