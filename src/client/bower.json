@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "homepage": "https://github.com/bryazginkos/test-build",
+  "authors": [
+    "bryazginkos"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  },
+  "overrides" : {
+    "bootstrap" : {
+      "main" : [
+        "./dist/js/bootstrap.min.js",
+        "./dist/css/bootstrap.min.css"
+      ]
+    }
+  }
+
+}
