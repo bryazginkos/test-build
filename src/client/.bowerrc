@@ -1,4 +1,5 @@
 {
-  "directory": "app/components/",
-  "https-proxy":[secret]
+  "directory": "app/components/"
+
+   //, "https-proxy":[secret]
 }
