@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 group 'ru.kos.test-build'
 version '1.0-SNAPSHOT'
 
@@ -35,23 +37,34 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-//todo windows dependency!!!
-task npm(type: Exec) {
+task npm(type: ExecAdvanced) {
     workingDir 'src/client'
-    executable 'npm.cmd'
+    execObject 'npm'
     args "install"
 }
 
-task bower(type: Exec, dependsOn: npm) {
+task bower(type: ExecAdvanced, dependsOn: npm) {
     workingDir 'src/client'
-    executable 'bower.cmd'
+    execObject 'bower'
     args "install"
 }
 
-task gulp(type: Exec, dependsOn: bower) {
+task gulp(type: ExecAdvanced, dependsOn: bower) {
     workingDir 'src/client'
-    executable 'gulp.cmd'
+    execObject 'gulp'
     args "copyFiles"
 }
 
 processResources.dependsOn gulp
+
+
+class ExecAdvanced extends Exec {
+
+    void setExecObject(String execObject) {
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            setExecutable(execObject + ".cmd")
+        } else {
+            setExecutable(execObject);
+        }
+    }
+}
