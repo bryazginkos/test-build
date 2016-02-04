@@ -34,3 +34,24 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+//todo windows dependency!!!
+task npm(type: Exec) {
+    workingDir 'src/client'
+    executable 'npm.cmd'
+    args "install"
+}
+
+task bower(type: Exec, dependsOn: npm) {
+    workingDir 'src/client'
+    executable 'bower.cmd'
+    args "install"
+}
+
+task gulp(type: Exec, dependsOn: bower) {
+    workingDir 'src/client'
+    executable 'gulp.cmd'
+    args "copyFiles"
+}
+
+processResources.dependsOn gulp
